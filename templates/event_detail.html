@@ -1,0 +1,45 @@
+{% extends "knodemy/base/base_admin_dashboard.html" %}
+{% load staticfiles %}
+{% load  formfilters %}
+{% block pagetitle %}Knodemy -  Event Profile Page{% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block pageheading %}  Event Profile Page {% endblock pageheading %}
+
+{% block content %}
+
+          	<div class="row mt">
+                  <div class="col-md-12">
+                      <div class="content-panel">
+                          <h4><i class="fa fa-angle-right"></i> {{ event.event_name }}</h4>
+                          <div class="panel-body">
+                              <a href="/editevent/{{ event.id }}">Edit</a><br/>
+                              <a href="/eventdelete/{{ event.id }}/?next==/eventdetail/{{ event.id }}">Delete</a><br/>
+                              <a href="/programflow/{{ event.id }}">Manage Program Flow</a><br/>
+                              <a href="/attendeeslist/{{ event.id }}">Student Attendees List</a><br/>
+                              <a href="#">Preview Flyer</a><br/>
+                              <a href="{% url 'share_flyer' %}">Share flyer </a><br/>
+
+                          </div>
+
+                      </div><!-- /content-panel -->
+                  </div><!-- /col-md-12 -->
+              </div><!-- /row -->
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+    <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+{% endblock javascript %}

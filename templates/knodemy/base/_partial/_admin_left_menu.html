@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<ul class="sidebar-menu" id="nav-accordion">
+
+    <p class="centered"><a href="#"><img src="{% static 'assets/img/knodemy-logo.jpg' %}" class="img-circle" width="60"></a>
+    </p>
+{% if request.user.is_authenticated %}<h5 class="centered">{{ request.user.first_name }} {{ request.user.last_name }}</h5>{% endif %}
+    <li class="mt">
+        <a {% if request.user.is_authenticated and request.user.userprofile.is_admin %}
+                href="{% url 'admin_dashboard' %}"
+            {% elif request.user.is_authenticated and not request.user.userprofile.is_admin %}
+                href="{% url 'event_list' %}"
+            >{% endif %}
+            <i class="fa fa-dashboard"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <li class="sub-menu dcjq-parent-li">
+        <a href="javascript:;">
+            <i class="fa fa-desktop"></i>
+            <span>Event</span>
+        </a>
+        {% if request.user.is_authenticated %}
+            {% if request.user.userprofile.is_admin %}
+                <ul class="sub">
+                    <li><a href="{% url 'create_event' %}">Create Event</a></li>
+                    <li><a href="{% url 'manage_events' %}">Manage Event</a></li>
+                    <li><a href="{% url 'create_team' %}">Create Team</a></li>
+                </ul>
+
+            {% elif not request.user.userprofile.is_admin %}
+                <ul class="sub">
+                    <li><a href="{% url 'event_list' %}">Search Event</a></li>
+                    {#                    <li><a href="{% url 'manage_events' %}">Manage Event</a></li>#}
+                </ul>
+
+            {% endif %}
+        {% endif %}
+    </li>
+
+    <li class="sub-menu">
+        <a href="{% url 'how_it_work' %}">
+            <i class="fa fa-question-circle"></i>
+            <span>How It Works</span>
+        </a>
+    </li>
+    {% if request.user.is_authenticated %}
+        {% if request.user.is_staff or request.user.userprofile.is_admin %}
+            <li class="sub-menu">
+                <a href="{% url 'admin_profile' %}">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <span>Edit Admin Profile</span>
+                </a>
+            </li>
+
+        {% else %}
+              <li class="sub-menu">
+                <a href="{% url 'student_profile' %}">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <span>Edit Profile</span>
+                </a>
+            </li>
+        {% endif %}
+    {% endif %}
+
+    {#                  <li class="sub-menu">#}
+    {#                      <a href="javascript:;" >#}
+    {#                          <i class="fa fa-desktop"></i>#}
+    {#                          <span>Student View</span>#}
+    {#                      </a>#}
+    {#                      <ul class="sub">#}
+    {#                          <li><a  href="student_signup.html">Student Signup</a></li>#}
+    {#                          <li><a  href="student_profile.html">Student Profile</a></li>#}
+    {#                          <li><a  href="event_search.html">Event Search</a></li>#}
+    {#                      </ul>#}
+    {#                  </li>#}
+</ul>

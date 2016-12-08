@@ -1,0 +1,59 @@
+{% extends "knodemy/base/base_admin_dashboard.html" %}
+{% load staticfiles %}
+{% load  formfilters %}
+{% block pagetitle %}Knodemy - Share Flyer{% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block pageheading %} Share Flyer {% endblock pageheading %}
+
+{% block content %}
+
+          	<div class="row mt">
+                  <div class="col-md-6">
+
+                      <div class="form-panel">
+                          <h4 class="mb"><i class="fa fa-angle-right"></i> Share Flyer </h4>
+                          <form class="form-horizontal style-form" method="post">
+                              {% csrf_token %}
+                              <p><strong>Event Details</strong></p>
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Email</label></div>
+                                  <div class="col-sm-12">
+                                      {{ form.email|addcss:'form-control' }}
+                                      {% if form.email.errors %}
+                                          <div class="errors">{{ form.email.errors }}</div>
+                                      {% endif %}
+                                  </div>
+                              </div>
+
+
+                              <div class="form-group">
+                                  <div  class="col-md-4">
+                                      <button type="submit" class="btn btn-theme btn-block">Send</button>
+                                  </div>
+
+                              </div>
+
+                          </form>
+                      </div>
+
+                  </div><!-- /col-md-12 -->
+              </div><!-- /row -->
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+    <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+{% endblock javascript %}

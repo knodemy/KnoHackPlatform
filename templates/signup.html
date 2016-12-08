@@ -1,0 +1,68 @@
+{% extends "knodemy/base/base_login_view.html" %}
+{% load staticfiles %}
+{% load formfilters %}
+{% block pagetitle %}Knodemy - Sign Up {% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block content %}
+	  <div id="login-page">
+	  	<div class="container">
+
+		      <form class="form-login" method="post">
+                {% csrf_token %}
+		        <h2 class="form-login-heading">sign up </h2>
+		        <div class="login-wrap">
+		            {{ form.first_name|addcss:"form-control"  }}
+                    <br>
+                    {{ form.last_name|addcss:"form-control"  }}
+		            <br>
+                    {{ form.email|addcss:"form-control"  }}
+                    <br/>
+                    {{ form.password|addcss:"form-control"  }}
+                    <br/>
+                    {{ form.organization|addcss:"form-control"  }}
+                    <br/>
+                    {{ form.position|addcss:"form-control"  }}
+		            <!--<input type="password" class="form-control" placeholder="Password">-->
+		            <br/>
+                    {% if error %}
+                        <div style="color:red">{{ error }}</div>
+                    {% endif %}
+		            <button class="btn btn-theme btn-block"  type="submit"><i class="fa fa-lock"></i> SIGN UP</button>
+		            <hr>
+
+		            <!--<div class="login-social-link centered">-->
+		            <!--<p>or you can sign in via your social network</p>-->
+		                <!--<button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>-->
+		                <!--<button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>-->
+		            <!--</div>-->
+		            <div class="registration">
+		                <a class="" href="{% url 'login' %}">
+		                    Back
+		                </a>
+		            </div>
+
+		        </div>
+		      </form>
+
+	  	</div>
+	  </div>
+
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+    <script type="text/javascript" src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script>
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+
+    <script>
+        $.backstretch("{% static 'assets/img/knodemy-bg.jpg' %}", {speed: 500});
+    </script>
+
+{% endblock javascript %}

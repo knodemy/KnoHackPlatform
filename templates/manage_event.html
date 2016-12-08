@@ -1,0 +1,64 @@
+{% extends "knodemy/base/base_admin_dashboard.html" %}
+{% load staticfiles %}
+{% load  formfilters %}
+{% block pagetitle %}Knodemy - Manage{% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block pageheading %} Manage {% endblock pageheading %}
+
+{% block content %}
+
+    <div class="row mt">
+        <div class="col-md-12">
+            <div class="content-panel">
+                <table class="table table-striped table-advance table-hover">
+                    <h4><i class="fa fa-angle-right"></i> Manage</h4>
+                    <hr>
+                    <thead>
+                    <tr>
+                        <th><i class="fa fa-bullhorn"></i> Event Name</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for e in event %}
+                        <tr>
+                            <td><a href="/eventdetail/{{ e.id }}">{{ e.event_name }}</a></td>
+                            <td>
+                                <a class="btn btn-primary btn-xs" href="/eventdetail/{{ e.id }}"><i class="fa fa-eye"></i> &nbsp;View</a>
+                                <a class="btn btn-primary btn-xs" href="/editevent/{{ e.id }}"><i class="fa fa-pencil"></i> &nbsp;Edit</a>
+                                <a class="btn btn-danger btn-xs" href="/eventdelete/{{ e.id }}"><i class="fa fa-trash-o "></i> &nbsp;Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div><!-- /content-panel -->
+        </div><!-- /col-md-12 -->
+    </div><!-- /row -->
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+    <script>
+        //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+        $(function () {
+            $('#cancel-event').click(function () {
+                window.location.href = '/admindashboard/'
+            })
+        });
+
+
+    </script>
+{% endblock javascript %}

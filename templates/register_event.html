@@ -1,0 +1,62 @@
+{% extends "knodemy/base/base_admin_dashboard.html" %}
+{% load staticfiles %}
+{% block pagetitle %}Knodemy - Dashboard{% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block pageheading %} Event Register {% endblock pageheading %}
+
+{% block content %}
+          	<h3><i class="fa fa-angle-right"></i></h3>
+          	<div class="row mt">
+                  <div class="col-md-6">
+
+                      <div class="form-panel">
+                          <h4 class="mb"><i class="fa fa-angle-right"></i> Event Register </h4>
+                          <form class="form-horizontal style-form" method="get">
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Event Name</label></div>
+                                  <div class="col-sm-12">
+                                      <input type="text" class="form-control" placeholder="Enter Event Name">
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Registration Code</label></div>
+                                  <div class="col-sm-12">
+                                      <input type="text" class="form-control" placeholder="Enter Registration Code">
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <div  class="col-md-6">
+                                      <a href="event_login.html" class="btn btn-theme btn-block">Back</a>
+                                  </div>
+                                  <div  class="col-md-6">
+                                      <a href="student_side_program_flow.html" class="btn btn-theme btn-block">Save</a>
+                                  </div>
+                              </div>
+
+                          </form>
+                      </div>
+
+                  </div><!-- /col-md-12 -->
+              </div><!-- /row -->
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+    <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+{% endblock javascript %}

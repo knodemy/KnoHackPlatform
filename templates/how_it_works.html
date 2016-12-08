@@ -1,0 +1,60 @@
+{% extends "knodemy/base/base_login_view.html" %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container">
+
+        <div class="form-login" style="max-width: 100%;">
+            <h2 class="form-login-heading">HOW IT WORKS</h2>
+            <div class="login-wrap">
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </p>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </p>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </p>
+
+                <hr>
+
+
+                <div class="registration">
+                        <a
+                            {% if user.is_authenticated and not user.userprofile.is_admin %}
+                                href="{% url 'event_list' %}"
+                            {% elif user.is_authenticated and user.userprofile.is_admin %}
+                                href="{% url 'admin_dashboard' %}"
+                            {% else %}
+                                href="{% url 'login' %}"
+                            {% endif %}>
+                            back
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+    <script type="text/javascript" src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script>
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+
+    <script>
+        $.backstretch("{% static 'assets/img/knodemy-bg.jpg' %}", {speed: 500});
+    </script>
+
+{% endblock javascript %}
+

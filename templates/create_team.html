@@ -1,0 +1,130 @@
+{% extends "knodemy/base/base_admin_dashboard.html" %}
+{% load staticfiles %}
+{% load  formfilters %}
+{% block pagetitle %}Knodemy - Create Team{% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block pageheading %} Create Team {% endblock pageheading %}
+
+{% block content %}
+
+          	<div class="row mt">
+                  <div class="col-md-6">
+
+                      <div class="form-panel">
+                          <h4 class="mb"><i class="fa fa-angle-right"></i> Create Team </h4>
+                          <form class="form-horizontal style-form" method="post" enctype="multipart/form-data">
+                              {% csrf_token %}
+                              <p><strong>Create Team</strong></p>
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Team Name</label></div>
+                                  <div class="col-sm-12">
+                                      <input type="text" name="team_name" id="team_name" class="form-control" required/>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Event</label></div>
+                                  <div class="col-sm-12">
+                                      <select name="event" class="form-control">
+                                          {% for e in event %}
+                                              <option value="{{ e.id }}">{{ e.event_name }}</option>
+                                          {% endfor %}
+                                        </select>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Student</label></div>
+                                  <div class="col-sm-12">
+                                      <select multiple name="student" class="form-control">
+                                          {% for s in student %}
+                                              <option value="{{ s.id }}">{{ s.email }}</option>
+                                          {% endfor %}
+                                        </select>
+                                  </div>
+                              </div>
+
+
+                              <div class="form-group">
+                                  <div  class="col-md-4">
+                                      <button type="submit" class="btn btn-theme btn-block">Save</button>
+                                  </div>
+                                  <div  class="col-md-4">
+                                      <a data-toggle="modal" href="#cancel-model" class="btn btn-theme btn-block">Cancel</a>
+                                  </div>
+                              </div>
+
+                          </form>
+                      </div>
+
+                  </div><!-- /col-md-12 -->
+              </div><!-- /row -->
+
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title">Image requirements</h4>
+                          </div>
+                          <div class="modal-body">
+                              <p>a. Guidelines for Image File</p>
+                              <p>b. Dimensions:​ Please select an image that is at least 2160 x 1080px.</p>
+                              <p>c. File Type:​ Images can only be selected with file types JPEG, PNG, BMP, or GIF.</p>
+                              <p>d. File Size:​ Please do not use images larger than 10 MB</p>
+                              <p>e. General Requirements: ​Please adhere to our image guidelines in order to attract more attendees to your event.</p>
+                              <p> This uploaded image will be used as a header background for generating a flyer for marketing purposes. </p>
+
+                          </div>
+                          <div class="modal-footer">
+                              <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                          </div>
+                      </div>
+                </div>
+            </div>
+
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="cancel-model" class="modal fade">
+                <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title">Cancel event</h4>
+                          </div>
+                          <div class="modal-body">
+                              <p>Are you sure you want to cancel?</p>
+                          </div>
+                          <div class="modal-footer">
+                              <button data-dismiss="modal" class="btn btn-default" id="cancel-event" type="button">Yes</button>
+                              <button data-dismiss="modal" class="btn btn-default" type="button">No</button>
+                          </div>
+                      </div>
+                </div>
+            </div>
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+    <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+    <script>
+
+    $(function(){
+        $('#cancel-event').click(function() {
+            window.location.href = '/admindashboard/'
+        })
+    });
+
+
+    </script>
+{% endblock javascript %}

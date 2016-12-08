@@ -1,0 +1,162 @@
+{% extends "knodemy/base/base_admin_dashboard.html" %}
+{% load staticfiles %}
+{% block pagetitle %}Knodemy - Dashboard{% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block pageheading %} Student Teams {% endblock pageheading %}
+
+{% block content %}
+
+    <div class="row mt">
+        <div class="col-lg-12 ">
+            <div class="col-md-6">
+                <div class="members_list ds">
+                    <!-- USERS ONLINE SECTION -->
+                    <h3>TEAM A</h3>
+                    <!-- First Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="{% static  'assets/img/ui-divya.jpg' %}" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">DIVYA MANIAN</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Second Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="{% static  'assets/img/ui-sherman.jpg' %}" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">DJ SHERMAN</a><br/>
+                                <muted>I am Busy</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Third Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="{% static  'assets/img/ui-danro.jpg' %}" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">DAN ROGERS</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Fourth Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="{% static  'assets/img/ui-zac.jpg' %}" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">Zac Sniders</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Fifth Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="{% static  'assets/img/ui-sam.jpg' %}" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">Marcel Newman</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-md-6 ">
+
+                <div class="members_list ds">
+                    <!-- USERS ONLINE SECTION -->
+                    <h3>TEAM B</h3>
+                    <!-- First Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="{% static  'assets/img/ui-divya.jpg' %}" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">DIVYA MANIAN</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Second Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="{% static  'assets/img/ui-sherman.jpg' %}" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">DJ SHERMAN</a><br/>
+                                <muted>I am Busy</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Third Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="{% static  'assets/img/ui-danro.jpg' %}" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">DAN ROGERS</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Fourth Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="{% static  'assets/img/ui-zac.jpg' %}" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">Zac Sniders</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Fifth Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="{% static  'assets/img/ui-sam.jpg' %}" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">Marcel Newman</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+
+    <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+
+{% endblock javascript %}

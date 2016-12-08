@@ -1,0 +1,60 @@
+{% extends "knodemy/base/base_admin_dashboard.html" %}
+{% load staticfiles %}
+{% load  formfilters %}
+{% block pagetitle %}Knodemy - Student Attendees List{% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block pageheading %} Student Attendees List {% endblock pageheading %}
+
+{% block content %}
+          	<h3><i class="fa fa-angle-right"></i> </h3>
+
+            <div class="row mt">
+                  <div class="col-md-12">
+                      <div class="content-panel">
+                          <table class="table table-striped table-advance table-hover">
+	                  	  	  <h4><i class="fa fa-angle-right"></i> Student Attendees List</h4>
+	                  	  	  <hr>
+                              <thead>
+                              <tr>
+                                  <th>First Name</th>
+                                  <th>Last Name</th>
+                                  <th>Grade</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              {% for a in attendees.event_register.all %}
+                              <tr>
+                                  <td><a href="/studentdetail/{{ a.id }}">{{ a.first_name }}</a></td>
+                                  <td>
+                                      {{ a.last_name }}
+                                  </td>
+                                  <td>
+                                      {{ a.grade }}
+                                  </td>
+                              </tr>
+                              {% endfor %}
+                              </tbody>
+                          </table>
+                      </div><!-- /content-panel -->
+                  </div><!-- /col-md-12 -->
+              </div><!-- /row -->
+
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+    <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+{% endblock javascript %}

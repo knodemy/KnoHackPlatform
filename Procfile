@@ -1,0 +1,1 @@
+web: gunicorn knohack.wsgi --log-file -

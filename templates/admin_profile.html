@@ -1,0 +1,124 @@
+{% extends "knodemy/base/base_admin_dashboard.html" %}
+{% load staticfiles %}
+{% block pagetitle %}Knodemy - Admin Edit Profile{% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block pageheading %} Edit Profile {% endblock pageheading %}
+
+{% block content %}
+
+            <div class="row mt">
+          		 <div class="col-md-6">
+
+                      <div class="form-panel">
+                          <h4 class="mb"><i class="fa fa-angle-right"></i> Profile </h4>
+                          <form class="form-horizontal style-form" id="form_edit_student" method="POST">
+                                {% csrf_token    %}
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">First Name</label></div>
+                                  <div class="col-sm-12">
+                                      <input type="text" class="form-control" name="first_name" placeholder="Enter First Name" value="{{ user.first_name }}">
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Last Name</label></div>
+                                  <div class="col-sm-12">
+                                      <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" value="{{ user.last_name }}">
+                                  </div>
+                              </div>
+
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Password</label></div>
+                                  <div class="col-sm-12">
+                                      <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password">
+                                  </div>
+                              </div>
+
+
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Confirm Password</label></div>
+                                  <div class="col-sm-12">
+                                      <input type="password" id="confirm_password" name="confirm" class="form-control" placeholder="Enter Confirm Password">
+                                      <div id="error_pass"><p>Password didn't match</p></div>
+                                  </div>
+
+                              </div>
+
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Email</label></div>
+                                  <div class="col-sm-12">
+                                      <input type="text" readonly class="form-control" name="email" placeholder="Enter Email" value="{{ user.email }}">
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Organization</label></div>
+                                  <div class="col-sm-12">
+                                      <input type="text" class="form-control" name="organization" placeholder="Enter Organization" value="{{ user.userprofile.organization }}">
+                                  </div>
+                              </div>
+
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Position</label></div>
+                                  <div class="col-sm-12">
+                                      <input type="text" class="form-control" name="position" placeholder="Enter Position" value="{{ user.userprofile.position }}">
+                                  </div>
+                              </div>
+
+
+                              <div class="form-group">
+                                  <div  class="col-md-6">
+                                      <button type="submit" class="btn btn-theme btn-block">Save</button>
+                                  </div>
+                                  <div  class="col-md-6">
+                                      <button type="submit" class="btn btn-theme btn-block">Cancel</button>
+                                  </div>
+                              </div>
+
+                          </form>
+                      </div>
+
+                  </div><!-- /col-md-12 -->
+          	</div>
+
+
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+
+    <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+      $('#error_pass').hide();
+
+      $("#confirm_password").focusout(function(event){
+        var confirm = $(this).val();
+        var pass = $('#password').val();
+        if (confirm != pass){
+{#            $(this).css("background", "red");#}
+            $('#error_pass').show().css('color','red');
+        }
+        else{
+{#             $(this).css("background-color", "#fff");#}
+            $('#error_pass').hide();
+        }
+    });
+
+  </script>
+
+{% endblock javascript %}

@@ -1,0 +1,213 @@
+{% extends "knodemy/base/base_login_view.html" %}
+{% load staticfiles %}
+{% load formfilters %}
+{% block pagetitle %}Knodemy - Student Sign Up {% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block content %}
+	  <div id="login-page">
+	  	<div class="container">
+
+		      <form class="form-login" method="post" name="sign-up-student">
+                {% csrf_token %}
+		        <h2 class="form-login-heading">sign up </h2>
+		        <div class="login-wrap">
+		            {{ form.first_name|addcss:"form-control"  }}
+                    <br>
+                    {{ form.last_name|addcss:"form-control"  }}
+		            <br>
+                    {{ form.email|addcss:"form-control"  }}
+                    <br/>
+                    {{ form.password|addcss:"form-control"  }}
+                    <br/>
+                    {{ form.confirm_password|addcss:"form-control"  }}
+                    <div id="error_pass" style="color: red"></div>
+                    <br/>SCHOOL:
+                    <div id="school">
+
+                        {{ form.school|addcss:"form-control" }}
+                        <div id="school-div" style="color:red;"></div>
+                    </div>
+                    <div id="additional">
+                        <br />
+                        <div id="not_listed">{{ form.school_not_listed|addcss:"form-control" }}</div>
+                        <div id="div-not-listed" style="color:red;"></div>
+                        <br />
+                        <div id="address1">{{ form.address1|addcss:"form-control"  }}</div>
+                        <div id="address1-div" style="color:red;"></div>
+                        <br/>
+                        <div id="address2">{{ form.address2  }}</div>
+                        <div id="address2-div" style="color:red;"></div>
+
+                    </div>
+                    <br/>
+                   AGE: <div id="age">{{ form.age|addcss:"form-control"  }}</div>
+                        <div id="age-div" style="color:red;"></div>
+                    <br />
+                   GRADE: <div id="grade">{{ form.grade|addcss:"form-control"   }}</div>
+                        <div id="grade-div" style="color:red;"></div>
+                    <br/>
+                    {{ form.city|addcss:"form-control"  }}
+                    <br/>
+                    {{ form.zip|addcss:"form-control"  }}
+                    <br/>
+                    {{ form.state|addcss:"form-control"  }}
+                    <br/>
+                    {{ form.phone|addcss:"form-control"  }}
+		            <!--<input type="password" class="form-control" placeholder="Password">-->
+		            <br/>
+                    {% if error %}
+                        <div style="color:red">{{ error }}</div>
+                    {% endif %}
+                    <p>Please select school, grade and age</p>
+		            <button class="btn btn-theme btn-block" id="submit_form"  type="submit"><i class="fa fa-lock"></i> SIGN UP</button>
+		            <hr>
+
+		            <!--<div class="login-social-link centered">-->
+		            <!--<p>or you can sign in via your social network</p>-->
+		                <!--<button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>-->
+		                <!--<button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>-->
+		            <!--</div>-->
+		            <div class="registration">
+		                <a class="" href="{% url 'login' %}">
+		                    Back
+		                </a>
+		            </div>
+
+		        </div>
+		      </form>
+
+	  	</div>
+	  </div>
+
+ {% endblock content %}
+
+{% block javascriptlinks %}
+
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+    <script type="text/javascript" src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script>
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+
+
+<script>
+        $.backstretch("{% static 'assets/img/knodemy-bg.jpg' %}", {speed: 500});
+
+        $(document).ready(function () {
+            $('#additional').hide();
+            $('p').hide();
+            $('#id_school').on('change', function() {
+
+                var school = $('#id_school option:selected').text();
+                if (school == 'not in the list'){
+                    $('#additional').show();
+                }
+                else{
+                    $('#additional').hide();
+                }
+            });
+
+            $('#submit_form').click(function(event) {
+
+                $('#div-not-listed').html('');
+                $('#address1-div').html('');
+               // $('#address2-div').html('');
+                $('#school-div').html('');
+                $('#age-div').html('');
+                $('#grade-div').html('');
+                $('#error_pass').html();
+
+                var school = $('#id_school option:selected').text();
+                var not_listed = $('#id_school_not_listed').val();
+                var address1 = $('#id_address1').val();
+               // var address2 = $('#id_address2').val();
+                var grade = $('#id_grade option:selected').text();
+                var age = $('#id_age option:selected').text();
+                var password = $('#id_password').val();
+                var confirm_password = $('#id_confirm_password').val();
+
+                if((age == 'Select an option')) {
+                    event.preventDefault();
+                    $('#age-div').html('Age is required');
+
+                    return false
+                }
+
+                if((grade == 'Select an option')) {
+                    event.preventDefault();
+                    $('#grade-div').html('Grade is required');
+
+                    return false
+                }
+
+
+                if((school == 'Select an option')) {
+                    event.preventDefault();
+                    $('#school-div').html('School is required');
+
+                    return false
+                }
+                if(password != confirm_password){
+                        event.preventDefault();
+                        $('#id_password').prop('required',true);
+                        $('#id_confirm_password').prop('required',true);
+                        $('#error_pass').html("Password didn't match");
+
+                        return false
+
+                    }
+
+                if(school == 'not in the list') {
+                    if((not_listed == '')) {
+
+                        event.preventDefault();
+                        $('#id_school_not_listed').prop('required',true);
+                        $('#div-not-listed').html('School is required');
+                        return false
+
+                    }
+                    if((address1 == '')) {
+
+                        event.preventDefault();
+                        $('#id_address1').prop('required',true);
+                        $('#address1-div').html('Address1 is required');
+
+                        return false
+
+                    }
+
+{#                    if((address2 == '')) {#}
+{##}
+{#                        event.preventDefault();#}
+{#                        $('#id_address2').prop('required',true);#}
+{#                        $('#address2-div').html('Address2 is required');#}
+{##}
+{#                        return false#}
+{##}
+{#                    }#}
+
+                }
+            });
+
+{#            $("#id_confirm_password").focusout(function(event){#}
+{##}
+{#                var confirm = $(this).val();#}
+{#                var pass = $('#id_password').val();#}
+{#                if (confirm != pass){#}
+{#                    alert('asd');#}
+{##}
+{#                    $('#error_pass').html("Password didn't match")#}
+{##}
+{#                }#}
+{#            });#}
+
+
+        });
+    </script>
+
+{% endblock javascript %}
+
+

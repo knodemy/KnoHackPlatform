@@ -1,0 +1,129 @@
+{% extends "knodemy/base/base_admin_dashboard.html" %}
+{% load staticfiles %}
+{% block pagetitle %}Knodemy - Student Information {% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block pageheading %} Student Information {% endblock pageheading %}
+
+{% block content %}
+
+    <div class="row mt">
+        <div class="col-md-6">
+
+            <div class="form-panel">
+                {% if student %}
+                <form class="form-horizontal style-form">
+                <h4 class="mb"><i class="fa fa-angle-right"></i> Student Information </h4>
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">First Name : {{ student.first_name }}</label></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">Last Name: {{ student.last_name }}</label></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">Email: {{ student.email }}</label></div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">School: {{ student.userprofile.school }}</label></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">Age: {{ student.userprofile.age }}</label></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">Grade: {{ student.userprofile.grade }}</label></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">Home Address 1: {{ student.userprofile.address_1 }}</label></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">Home Address 2: {{ student.userprofile.address_2 }}</label></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">City: {{ student.userprofile.city }}</label></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">State: {{ student.userprofile.state }}</label></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">Zip Code: {{ student.userprofile.zip }}</label></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12"><label class="control-label">Phone Number: {{ student.userprofile.phone }}</label></div>
+
+                    </div>
+                    </form>
+                    {% endif %}
+
+            </div>
+
+        </div><!-- /col-md-12 -->
+    </div>
+
+
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+
+    <script>
+        //custom select box
+
+        $(function(){
+            $('select.styled').customSelect();
+        });
+
+    </script>
+
+    <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+      $('p').hide();
+
+      $("#confirm_password").focusout(function(event){
+        var confirm = $(this).val();
+        var pass = $('#password').val();
+        if (confirm != pass){
+            $(this).css("background", "red");
+            $('p').show();
+        }
+        else{
+             $(this).css("background-color", "#fff");
+            $('p').hide();
+        }
+    });
+
+</script>
+
+{% endblock javascript %}

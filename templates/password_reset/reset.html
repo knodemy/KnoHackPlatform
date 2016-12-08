@@ -1,0 +1,92 @@
+{% extends "password_reset/base.html" %}
+{% load staticfiles %}{% load i18n %}
+
+{% block content %}
+    {% if invalid %}
+{#        {% url "password_reset_recover" as recovery_url %}#}
+        <h3>{% blocktrans %}<strong>Sorry, this password reset link is invalid.</strong> Go to  <a href="/login/">Login</a>.{% endblocktrans %}</h3>
+    {% else %}
+
+
+        <section id="content" class="m-t-lg wrapper-md animated fadeInUp">
+
+            <div class="row m-n">
+
+                <div class="col-md-4 col-md-offset-3 m-t-lg">
+                    <section class="panel">
+
+                        <header class="panel-heading bg bg-primary text-center" style="background-color: #68dff0;">
+                            Password Change
+                        </header>
+
+                        <header class="panel-heading bg-primary" style="background-color: white;color: #555555;;">
+                            {% blocktrans %}Hi <strong>{{ name }}</strong>,
+                                Please choose your new password.{% endblocktrans %}
+
+                            <div id="password_reset-div" style="color:red;"></div>
+
+                         </header>
+
+                        <form method="post" action="{% url 'reset'  token %}" class="panel-body">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label class="control-label">New Password</label>
+                                <input name="password1" id="id_password1" type="password"  class="form-control">
+                                <div id="password1_reset-div" style="color:red;"></div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">New Password Confirm</label>
+                                <input name="password2" id="id_password2" type="password"  class="form-control">
+                                <div id="password2_reset-div" style="color:red;"></div>
+                            </div>
+
+
+                            <button type="submit" id="submit_form" class="btn btn-block" style="background-color: #68dff0;color: #ffffff;">
+                                Change
+                            </button>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
+
+{% block javascript %}
+    <script>
+
+        $('#submit_form').click(function(event) {
+            $('#password_reset-div').html('');
+            $('#password1_reset-div').html('');
+            $('#password2_reset-div').html('');
+            var pass = $('#id_password1').val();
+            var confirm_pass = $('#id_password2').val();
+
+            if(pass == ''){
+                event.preventDefault();
+                $('#password1_reset-div').html("");
+                return false
+            }
+            else if(confirm_pass == null){
+                alert('asd');
+                event.preventDefault();
+                $('#password2_reset-div').html("");
+                return false
+            }
+            else if (pass != confirm_pass){
+                event.preventDefault();
+                $('#password_reset-div').html("Password doesn't match");
+                return false
+            }
+            else {
+                return true
+            }
+
+        });
+
+
+
+    </script>
+{% endblock javascript %}

@@ -1,0 +1,35 @@
+{% extends "knodemy/base/base_admin_dashboard.html" %}
+{% load staticfiles %}
+{% block pagetitle %}Knodemy - Dashboard{% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block pageheading %} Dashboard {% endblock pageheading %}
+
+{% block content %}
+
+            <div class="row mt">
+          		<div class="col-lg-12">
+          		<p>Place your content here.</p>
+          		</div>
+          	</div>
+
+
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+
+    <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+
+{% endblock javascript %}

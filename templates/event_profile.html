@@ -1,0 +1,171 @@
+{% extends "knodemy/base/base_admin_dashboard.html" %}
+{% load staticfiles %}
+{% load  formfilters %}
+{% block pagetitle %}Knodemy - See Event Detail{% endblock pagetitle %}
+{% block headscripts %}{% endblock headscripts %}
+
+{% block pageheading %} See Event Detail {% endblock pageheading %}
+
+{% block content %}
+
+          	<div class="row mt">
+                  <div class="col-md-6">
+
+                      <div class="form-panel">
+                          {% if event %}
+                          <form class="form-horizontal style-form">
+                          <h4 class="mb"><i class="fa fa-angle-right"></i> See Event Detail </h4>
+
+                              <p><strong>Event Details</strong></p>
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Event Name: {{ event.event_name }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Event Date: {{ event.event_date }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Event Theme: {{ event.event_theme }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Participant Grade Level: {{ event.participant_grade_level }}</label></div>
+
+                              </div>
+
+{#                              <div class="form-group">#}
+{#                                  <div class="col-sm-12"><label class="control-label">Event Start Time</label></div>#}
+{#                                  <div class="col-sm-12">#}
+{#                                      {{ form.start_time|addcss:'form-control' }}#}
+{#                                      {% if form.start_time.errors %}#}
+{#                                          {{ form.start_time.errors }}#}
+{#                                      {% endif %}#}
+{#                                  </div>#}
+{#                              </div>#}
+{##}
+{#                              <div class="form-group">#}
+{#                                  <div class="col-sm-12"><label class="control-label">Event End Time</label></div>#}
+{#                                  <div class="col-sm-12">#}
+{#                                      {{ form.end_time|addcss:'form-control' }}#}
+{#                                      {% if form.end_time.errors %}#}
+{#                                          {{ form.end_time.errors }}#}
+{#                                      {% endif %}#}
+{#                                  </div>#}
+{#                              </div>#}
+                              <p><strong>Event Location</strong></p>
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Event Location Name: {{ event.location_name }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Event Address 1: {{ event.location_address_1 }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Event Address 2: {{ event.location_address_2 }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">City: {{ event.city }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">State: {{ event.state }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Zip Code: {{ event.zip_code }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Country: {{ event.country }}</label></div>
+
+                              </div>
+
+                              <p><strong>Event Description</strong></p>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Event Details: {{ event.event_details|safe }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Optional Details: {{ event.optional_event_details|safe }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Event FAQ: {{ event.event_FAQ|safe }}</label></div>
+
+                              </div>
+
+                              <p><strong>Event Contact</strong></p>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Admin Contact Name: {{ event.event_contact_name }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Contact Email: {{ event.event_contact_email }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Contact Phone Number: {{ event.event_contact_phone }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Knodemy Code: {{ event.event_access_code }}</label></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-sm-12"><label class="control-label">Registration Code: {{ event.registration_code }}</label></div>
+
+                              </div>
+                            </form>
+                            {% endif %}
+                      </div>
+
+                  </div><!-- /col-md-12 -->
+              </div><!-- /row -->
+
+{% endblock content %}
+
+{% block javascriptlinks %}
+
+
+{% endblock javascriptlinks %}
+
+{% block javascript %}
+    <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+    <script>
+
+    $(function(){
+        $('#cancel-event').click(function() {
+            window.location.href = '/admindashboard/'
+        })
+    });
+
+
+    </script>
+{% endblock javascript %}
